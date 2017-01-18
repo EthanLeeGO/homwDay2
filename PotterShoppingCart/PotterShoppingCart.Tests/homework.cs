@@ -55,7 +55,7 @@ namespace SeleniumTests
             driver.FindElement(By.Id("txtPotter5")).Clear();
             driver.FindElement(By.Id("txtPotter5")).SendKeys("1");
             driver.FindElement(By.Id("Button1")).Click();
-            Assert.AreEqual("3750", driver.FindElement(By.Id("txtTotal")).Text);
+            Assert.AreEqual("375", driver.FindElement(By.Id("txtTotal")).Text);
         }
         private bool IsElementPresent(By by)
         {
