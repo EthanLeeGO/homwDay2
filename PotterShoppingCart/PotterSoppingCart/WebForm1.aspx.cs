@@ -16,13 +16,12 @@ namespace PotterSoppingCart
 
         }
 
-      
-       
 
-        protected void Button1_Click(object sender, EventArgs e)
+
+        private List<Order> getBooks()
         {
             List<Order> books = new List<Order>();
-            
+
             //Order bookorder = new Order();
             if (!string.IsNullOrEmpty(txtPotter1.Text))
             {
@@ -44,49 +43,20 @@ namespace PotterSoppingCart
             {
                 books.Add(new Order() { book = new Potter5(), quantity = int.Parse(txtPotter5.Text) });
             }
-
-           
-
-
-            // books.GroupBy(x => x.book).Count() / books.Sum(x => x.quantity)
-            Double total = 0;
-            int package = 1;
-            while (books.Any(x => x.quantity >= package))
-            {
-                var pack= books.Where(x => x.quantity >= package);
-
-                double discount = 1;
-
-                if (pack.Count() == 2)
-                {
-                    discount = 0.95;
-                }
-                if (pack.Count() == 3)
-                {
-                    discount = 0.9;
-                }
-                if (pack.Count() == 4)
-                {
-                    discount = 0.8;
-                }
-                if (pack.Count() == 5)
-                {
-                    discount = 0.75;
-                }
-
-                total +=pack.Sum(x=>x.book.price)  * discount;
-                package++;
-            }
-
-
-
-           
-
-
-            //var total=books.Sum(x=>x.quantity)*discount*100;
-
-
-            txtTotal.Text = total.ToString();
+            return books;
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+
+            var books = getBooks();
+
+
+            txtTotal.Text = calculate.CalBooks(books).ToString();
+           
+        }
+
+      
     }
 }
